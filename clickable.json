@@ -8,11 +8,23 @@
     "PKG_CONFIG_PATH": "${QTMPRIS_LIB_INSTALL_DIR}/usr/lib/${ARCH_TRIPLET}/pkgconfig"
   },
   "scripts": {
-    "prepare-deps": "git clone https://git.sailfishos.org/mer-core/qtmpris.git libs/qtmpris"
+    "prepare-deps": "git clone https://git.sailfishos.org/mer-core/qtmpris.git libs/qtmpris && git clone -b v18.11.80 https://invent.kde.org/frameworks/kcontacts.git libs/kcontacts && "
   },
   "libraries": {
     "qtmpris": {
       "builder": "qmake"
+    },
+    "kcontacts": {
+      "builder": "cmake",
+      "dependencies_host": [
+        "extra-cmake-modules"
+      ],
+      "dependencies_target": [
+        "libkf5coreaddons-dev",
+        "libkf5config-dev",
+        "libkf5i18n-dev",
+        "libkf5codecs-dev"
+      ]
     }
   }
 }
